@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\david\\\\OneDrive\\\\Documents\\\\GitHub\\\\FCO\" /s /b)",
+      "Bash(git config:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)"
+    ]
+  }
+}
