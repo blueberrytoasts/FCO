@@ -180,13 +180,25 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: python film_rgb_analysis.py <path_to_tiff_file>")
         sys.exit(1)
-    
+
+    input_path = Path(sys.argv[1])
     analyzer = FilmAnalyzer(sys.argv[1])
+
+    # Create output folder based on input filename (without extension)
+    output_dir = Path("outputs") / input_path.stem
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     results = analyzer.analyze_all_regions()
     print("\n" + "="*50 + "\nRESULTS\n" + "="*50)
     print(results.to_string(index=False))
-    analyzer.plot_analysis(results, save_path='film_analysis_plot.png')
-    analyzer.export_to_csv(results)
+
+    # Save outputs to the dedicated folder
+    plot_path = output_dir / "film_analysis_plot.png"
+    csv_path = output_dir / "film_analysis_results.csv"
+
+    analyzer.plot_analysis(results, save_path=str(plot_path))
+    analyzer.export_to_csv(results, filepath=str(csv_path))
+    print(f"\nOutputs saved to: {output_dir}")
     plt.show()
 
 if __name__ == "__main__":
