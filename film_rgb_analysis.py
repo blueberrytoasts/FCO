@@ -105,7 +105,7 @@ class FilmAnalyzer:
             }
         return results
     
-    def detect_film_regions(self, threshold_factor: float = 0.9, min_width: int = 20) -> List[Tuple[int, int]]:
+    def detect_film_regions(self, threshold_factor: float = 0.98, min_width: int = 20) -> List[Tuple[int, int]]:
         red_profile = self.get_channel('red').mean(axis=0)
         threshold = self.pv_unexposed * threshold_factor
         below_threshold = red_profile < threshold
