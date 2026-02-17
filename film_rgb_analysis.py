@@ -33,7 +33,7 @@ class FilmAnalyzer:
     """
     
     # Maximum pixel value for 16-bit scanner
-    MAX_PV_16BIT = 65535
+    MAX_PV_16BIT = 65536
     
     def __init__(self, filepath: str, pv_unexposed: Optional[int] = None):
         self.filepath = Path(filepath)
