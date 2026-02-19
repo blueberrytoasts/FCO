@@ -41,3 +41,9 @@ def test_map_regions_to_doses_three_replicates():
     assert result[6] == 50
     assert result[7] == 0
     assert result[9] == 0
+
+
+def test_map_regions_to_doses_uneven_raises():
+    """Raises ValueError when films don't divide evenly across dose levels."""
+    with pytest.raises(ValueError, match="evenly divisible"):
+        map_regions_to_doses(11, [0, 10, 50, 200, 500])

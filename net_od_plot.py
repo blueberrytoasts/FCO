@@ -39,13 +39,25 @@ def map_regions_to_doses(n_regions: int, doses: list) -> dict:
     Regions are ordered most-to-least exposed (highest dose first).
     Doses are provided least-to-greatest and reversed internally.
 
+    Precondition: n_regions must be evenly divisible by len(doses).
+
     Args:
         n_regions: Total number of film regions detected.
         doses: Dose levels in cGy, least-to-greatest.
 
     Returns:
         Dict mapping region number (1-indexed) -> dose value.
+
+    Raises:
+        ValueError: If n_regions is not evenly divisible by len(doses).
     """
+    if len(doses) == 0:
+        raise ValueError("doses list must not be empty.")
+    if n_regions % len(doses) != 0:
+        raise ValueError(
+            f"n_regions ({n_regions}) must be evenly divisible by the number of "
+            f"dose levels ({len(doses)}). Got remainder {n_regions % len(doses)}."
+        )
     doses_desc = list(reversed(doses))  # highest dose first
     replicates = n_regions // len(doses_desc)
     mapping = {}
