@@ -59,7 +59,16 @@ ax2.legend()
 ax2.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('dosimetry_analysis.png')
+
+# Create outputs folder if it doesn't exist
+from pathlib import Path
+output_dir = Path("outputs")
+output_dir.mkdir(exist_ok=True)
+
+# Save to outputs folder
+output_path = output_dir / "dosimetry_analysis.png"
+plt.savefig(output_path)
+print(f"Plot saved to: {output_path}")
 
 print(f"Match Equation: Flatbed_OD = {coeffs[0]:.4f}*(Dek_OD)^2 + {coeffs[1]:.4f}*(Dek_OD) + {coeffs[2]:.4f}")
 print(f"R-squared: {r_squared:.4f}")
