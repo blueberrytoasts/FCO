@@ -7,7 +7,17 @@
       "Bash(git pull:*)",
       "Bash(python3:*)",
       "Bash(python -c:*)",
-      "Bash(python film_rgb_analysis.py:*)"
+      "Bash(python film_rgb_analysis.py:*)",
+      "Bash(\"C:/GitHub/FCO/net_od_plot.py\":*)",
+      "Bash(python:*)",
+      "Bash(git -C \"C:/GitHub/FCO\" add net_od_plot.py)",
+      "Bash(git -C:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(/c/GitHub/FCO/tests/__init__.py:*)",
+      "Bash(/c/GitHub/FCO/tests/test_net_od_plot.py:*)",
+      "Bash(pip install:*)",
+      "Bash(git mv:*)"
     ]
   }
 }
