@@ -106,6 +106,32 @@ def average_od_by_dose(df: pd.DataFrame, doses: list) -> dict:
     return result
 
 
+def average_pv_by_dose(df: pd.DataFrame, doses: list) -> dict:
+    """
+    Average pixel values per dose level across replicate films.
+
+    Args:
+        df: DataFrame from film_analysis_results.csv (must have region, *_pv columns).
+        doses: Dose levels in cGy, least-to-greatest.
+
+    Returns:
+        Dict mapping dose -> {'red': mean_pv, 'green': mean_pv, 'blue': mean_pv}
+    """
+    n_regions = len(df)
+    region_to_dose = map_regions_to_doses(n_regions, doses)
+    df = df.copy()
+    df['dose'] = df['region'].map(region_to_dose)
+
+    result = {}
+    for dose, group in df.groupby('dose'):
+        result[dose] = {
+            'red':   group['red_pv'].mean(),
+            'green': group['green_pv'].mean(),
+            'blue':  group['blue_pv'].mean(),
+        }
+    return result
+
+
 def compute_net_od(pre: dict, post: dict) -> dict:
     """
     Compute Net OD = post_od - pre_od for each dose and channel.
@@ -159,6 +185,33 @@ def average_pairs(pairs_net_od: list) -> dict:
     return result
 
 
+def export_csv(net_od: dict, net_pv: dict, doses: list, output_path: str):
+    """
+    Export net OD and net pixel values to a CSV file.
+
+    Args:
+        net_od:      Averaged net_od dict: dose -> {'red': val, 'green': val, 'blue': val}
+        net_pv:      Averaged net_pv dict: dose -> {'red': val, 'green': val, 'blue': val}
+        doses:       Dose levels in cGy.
+        output_path: Path to save the CSV.
+    """
+    rows = []
+    for dose in sorted(doses):
+        rows.append({
+            'dose_cgy':    dose,
+            'net_red_od':  net_od[dose]['red'],
+            'net_green_od': net_od[dose]['green'],
+            'net_blue_od': net_od[dose]['blue'],
+            'net_red_pv':  net_pv[dose]['red'],
+            'net_green_pv': net_pv[dose]['green'],
+            'net_blue_pv': net_pv[dose]['blue'],
+        })
+    df = pd.DataFrame(rows)
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(output_path, index=False)
+    print(f"CSV saved to:  {output_path}")
+
+
 def plot_net_od(net_od: dict, doses: list, output_path: str):
     """
     Plot Net OD vs. Dose for RGB channels (averaged across pairs).
@@ -200,19 +253,24 @@ if __name__ == '__main__':
                          f"must have the same number of entries.")
 
     pairs_net_od = []
-    pair_labels = []
+    pairs_net_pv = []
 
     for pre_name, post_name in zip(args.pre, args.post):
         print(f"Processing pair: {pre_name} / {post_name}")
         pre_df  = load_csv(pre_name)
         post_df = load_csv(post_name)
 
-        pre_avg  = average_od_by_dose(pre_df,  args.doses)
-        post_avg = average_od_by_dose(post_df, args.doses)
+        pre_od_avg  = average_od_by_dose(pre_df,  args.doses)
+        post_od_avg = average_od_by_dose(post_df, args.doses)
+        pre_pv_avg  = average_pv_by_dose(pre_df,  args.doses)
+        post_pv_avg = average_pv_by_dose(post_df, args.doses)
 
-        net_od = compute_net_od(pre_avg, post_avg)
-        pairs_net_od.append(net_od)
-        pair_labels.append(f"{pre_name}/{post_name}")
+        pairs_net_od.append(compute_net_od(pre_od_avg, post_od_avg))
+        pairs_net_pv.append(compute_net_od(pre_pv_avg, post_pv_avg))
 
-    averaged = average_pairs(pairs_net_od)
-    plot_net_od(averaged, args.doses, args.output)
+    averaged_od = average_pairs(pairs_net_od)
+    averaged_pv = average_pairs(pairs_net_pv)
+
+    csv_path = Path(args.output).with_suffix('.csv')
+    export_csv(averaged_od, averaged_pv, args.doses, str(csv_path))
+    plot_net_od(averaged_od, args.doses, args.output)
