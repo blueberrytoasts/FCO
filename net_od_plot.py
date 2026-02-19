@@ -68,6 +68,44 @@ def map_regions_to_doses(n_regions: int, doses: list) -> dict:
     return mapping
 
 
+
+def load_csv(scan_name: str) -> pd.DataFrame:
+    """Load film_analysis_results.csv for a given scan name."""
+    path = Path('outputs') / scan_name / 'film_analysis_results.csv'
+    if not path.exists():
+        raise FileNotFoundError(
+            f"CSV not found: {path}\n"
+            f"Run film_rgb_analysis.py on '{scan_name}' first."
+        )
+    return pd.read_csv(path)
+
+
+def average_od_by_dose(df: pd.DataFrame, doses: list) -> dict:
+    """
+    Average OD values per dose level across replicate films.
+
+    Args:
+        df: DataFrame from film_analysis_results.csv (must have region, *_od columns).
+        doses: Dose levels in cGy, least-to-greatest.
+
+    Returns:
+        Dict mapping dose -> {'red': mean_od, 'green': mean_od, 'blue': mean_od}
+    """
+    n_regions = len(df)
+    region_to_dose = map_regions_to_doses(n_regions, doses)
+    df = df.copy()
+    df['dose'] = df['region'].map(region_to_dose)
+
+    result = {}
+    for dose, group in df.groupby('dose'):
+        result[dose] = {
+            'red':   group['red_od'].mean(),
+            'green': group['green_od'].mean(),
+            'blue':  group['blue_od'].mean(),
+        }
+    return result
+
+
 if __name__ == '__main__':
     args = parse_args()
     if len(args.pre) != len(args.post):

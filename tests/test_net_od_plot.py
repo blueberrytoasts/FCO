@@ -47,3 +47,23 @@ def test_map_regions_to_doses_uneven_raises():
     """Raises ValueError when films don't divide evenly across dose levels."""
     with pytest.raises(ValueError, match="evenly divisible"):
         map_regions_to_doses(11, [0, 10, 50, 200, 500])
+
+
+from net_od_plot import average_od_by_dose
+
+
+def test_average_od_by_dose():
+    """Average OD values per dose level across replicates."""
+    df = pd.DataFrame({
+        'region': [1, 2, 3, 4],
+        'red_od':   [0.50, 0.52, 0.20, 0.22],
+        'green_od': [0.40, 0.42, 0.10, 0.12],
+        'blue_od':  [0.30, 0.32, 0.05, 0.07],
+    })
+    doses = [0, 500]
+    result = average_od_by_dose(df, doses)
+    # result is dict: dose -> {channel: mean_od}
+    assert result[500]['red']   == pytest.approx(0.51)
+    assert result[500]['green'] == pytest.approx(0.41)
+    assert result[0]['red']     == pytest.approx(0.21)
+    assert result[0]['blue']    == pytest.approx(0.06)
