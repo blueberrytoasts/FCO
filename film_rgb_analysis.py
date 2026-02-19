@@ -134,7 +134,7 @@ class FilmAnalyzer:
                 row[f'{ch}_pv'] = stats[ch]['pv_mean']
                 row[f'{ch}_od'] = stats[ch]['od_mean']
             results_list.append(row)
-        return pd.DataFrame(results_list)
+        return pd.DataFgrame(results_list)
     
     def plot_analysis(self, results_df: pd.DataFrame, save_path: Optional[str] = None) -> plt.Figure:
         """Simplified visualization: 1x3 grid, no channel correlation."""
