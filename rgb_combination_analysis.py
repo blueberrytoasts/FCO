@@ -14,6 +14,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+# Input data sources — update RGB_CSV_PATH when re-running with a new scan session
+DEKTRONICS_CSV_PATH = Path("data/regression data.csv")
+RGB_CSV_PATH = Path("outputs/Pre-001_Pre-002_Post-003_Post-004/net_od_plot.csv")
+
 
 def fit_linear_combination(X: np.ndarray, y: np.ndarray) -> tuple[float, float, float]:
     """Fit y = a*X[:,0] + b*X[:,1] + c*X[:,2] with no intercept.
@@ -51,10 +55,8 @@ def load_data() -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         X: shape (n, 3) — OD_R, OD_G, OD_B from flatbed
         y: shape (n,)   — OD_dektronics
     """
-    dek = pd.read_csv("data/regression data.csv")
-    rgb = pd.read_csv(
-        "outputs/Pre-001_Pre-002_Post-003_Post-004/net_od_plot.csv"
-    )
+    dek = pd.read_csv(DEKTRONICS_CSV_PATH)
+    rgb = pd.read_csv(RGB_CSV_PATH)
 
     dek = dek.rename(columns={"Dose (cGy)": "dose_cgy"})
     merged = pd.merge(
@@ -62,6 +64,11 @@ def load_data() -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         rgb[["dose_cgy", "net_red_od", "net_green_od", "net_blue_od"]],
         on="dose_cgy",
     )
+    if len(merged) == 0:
+        raise ValueError(
+            "Merge produced no rows — check that dose_cgy values align between "
+            f"{DEKTRONICS_CSV_PATH} and {RGB_CSV_PATH}."
+        )
 
     doses = merged["dose_cgy"].to_numpy(dtype=float)
     X = merged[["net_red_od", "net_green_od", "net_blue_od"]].to_numpy(dtype=float)
