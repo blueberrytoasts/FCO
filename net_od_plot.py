@@ -116,7 +116,17 @@ def compute_net_od(pre: dict, post: dict) -> dict:
 
     Returns:
         Dict mapping dose -> {'red': net_od, 'green': net_od, 'blue': net_od}
+
+    Raises:
+        ValueError: If pre and post do not have identical dose keys.
     """
+    if set(pre.keys()) != set(post.keys()):
+        only_pre  = set(pre.keys())  - set(post.keys())
+        only_post = set(post.keys()) - set(pre.keys())
+        raise ValueError(
+            f"pre and post must have identical dose levels. "
+            f"Only in pre: {sorted(only_pre)}. Only in post: {sorted(only_post)}."
+        )
     result = {}
     for dose in post:
         result[dose] = {

@@ -85,5 +85,16 @@ def test_compute_net_od():
     result = compute_net_od(pre, post)
     assert result[0]['red']    == pytest.approx(0.02)
     assert result[0]['green']  == pytest.approx(0.02)
+    assert result[0]['blue']   == pytest.approx(0.03)
     assert result[500]['red']  == pytest.approx(0.30)
+    assert result[500]['green'] == pytest.approx(0.35)
     assert result[500]['blue'] == pytest.approx(0.40)
+
+
+def test_compute_net_od_mismatched_doses_raises():
+    """Raises ValueError when pre and post have different dose keys."""
+    pre  = {0: {'red': 0.1, 'green': 0.1, 'blue': 0.1}}
+    post = {0: {'red': 0.2, 'green': 0.2, 'blue': 0.2},
+            500: {'red': 0.5, 'green': 0.5, 'blue': 0.5}}
+    with pytest.raises(ValueError, match="identical dose levels"):
+        compute_net_od(pre, post)
