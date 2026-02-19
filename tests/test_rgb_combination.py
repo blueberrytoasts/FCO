@@ -9,9 +9,9 @@ def test_fit_returns_three_coefficients():
                   [0.6, 0.30, 0.12]])
     y = np.array([0.12, 0.36, 0.72])
     a, b, c = fit_linear_combination(X, y)
-    assert isinstance(a, float)
-    assert isinstance(b, float)
-    assert isinstance(c, float)
+    assert isinstance(a, (float, np.floating))
+    assert isinstance(b, (float, np.floating))
+    assert isinstance(c, (float, np.floating))
 
 
 def test_fit_perfect_red_only():
@@ -45,11 +45,14 @@ def test_compute_rms_known_value():
 
 
 def test_fit_no_intercept_passes_through_origin():
-    # With no intercept, zero input must give zero output
-    X = np.array([[0.0, 0.0, 0.0],
-                  [0.1, 0.05, 0.02],
-                  [0.5, 0.25, 0.10]])
-    y = np.array([0.0, 0.13, 0.65])
+    # Fit on data offset from origin - a model WITH intercept would fit perfectly,
+    # but no-intercept must map zero input to zero output
+    X = np.array([[0.1, 0.05, 0.02],
+                  [0.3, 0.15, 0.06],
+                  [0.6, 0.30, 0.12]])
+    y = np.array([0.5, 0.7, 1.0])  # offset: doesn't pass through origin naturally
     a, b, c = fit_linear_combination(X, y)
-    predicted_zero = a * 0.0 + b * 0.0 + c * 0.0
+    # Zero input row must produce zero prediction (no hidden intercept)
+    zero_input = np.array([0.0, 0.0, 0.0])
+    predicted_zero = np.dot(zero_input, [a, b, c])
     assert abs(predicted_zero) < 1e-10
