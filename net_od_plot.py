@@ -136,11 +136,67 @@ def compute_net_od(pre: dict, post: dict) -> dict:
     return result
 
 
+CHANNEL_COLORS = {'red': 'red', 'green': 'green', 'blue': 'blue'}
+LINE_STYLES = ['solid', 'dashed']
+
+
+def plot_net_od(pairs_net_od: list, pair_labels: list, doses: list, output_path: str):
+    """
+    Plot Net OD vs. Dose for all RGB channels across multiple pairs.
+
+    Args:
+        pairs_net_od: List of net_od dicts (one per pair), each from compute_net_od().
+        pair_labels:  List of label strings for each pair (e.g. ['Pre-001/Post-003', ...]).
+        doses:        Dose levels in cGy (any order, will be sorted ascending for x-axis).
+        output_path:  Path to save the PNG.
+    """
+    doses_sorted = sorted(doses)
+
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    for pair_idx, (net_od, label) in enumerate(zip(pairs_net_od, pair_labels)):
+        linestyle = LINE_STYLES[pair_idx % len(LINE_STYLES)]
+        for ch in ('red', 'green', 'blue'):
+            y = [net_od[dose][ch] for dose in doses_sorted]
+            ax.plot(
+                doses_sorted, y,
+                color=CHANNEL_COLORS[ch],
+                linestyle=linestyle,
+                marker='o',
+                label=f'{ch.capitalize()} — {label}'
+            )
+
+    ax.set_xlabel('Dose (cGy)')
+    ax.set_ylabel('Net Optical Density')
+    ax.set_title('Net OD vs. Dose')
+    ax.legend(fontsize=8)
+    ax.grid(True, alpha=0.3)
+
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=150)
+    print(f"Plot saved to: {output_path}")
+
+
 if __name__ == '__main__':
     args = parse_args()
     if len(args.pre) != len(args.post):
         raise SystemExit(f"Error: --pre ({len(args.pre)} items) and --post ({len(args.post)} items) "
                          f"must have the same number of entries.")
-    print(f"Pre scans:  {args.pre}")
-    print(f"Post scans: {args.post}")
-    print(f"Doses:      {args.doses}")
+
+    pairs_net_od = []
+    pair_labels = []
+
+    for pre_name, post_name in zip(args.pre, args.post):
+        print(f"Processing pair: {pre_name} / {post_name}")
+        pre_df  = load_csv(pre_name)
+        post_df = load_csv(post_name)
+
+        pre_avg  = average_od_by_dose(pre_df,  args.doses)
+        post_avg = average_od_by_dose(post_df, args.doses)
+
+        net_od = compute_net_od(pre_avg, post_avg)
+        pairs_net_od.append(net_od)
+        pair_labels.append(f"{pre_name}/{post_name}")
+
+    plot_net_od(pairs_net_od, pair_labels, args.doses, args.output)
