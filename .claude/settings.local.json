@@ -4,7 +4,10 @@
       "Bash(dir \"C:\\\\Users\\\\david\\\\OneDrive\\\\Documents\\\\GitHub\\\\FCO\" /s /b)",
       "Bash(git config:*)",
       "Bash(git fetch:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(python3:*)",
+      "Bash(python -c:*)",
+      "Bash(python film_rgb_analysis.py:*)"
     ]
   }
 }
