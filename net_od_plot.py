@@ -137,34 +137,49 @@ def compute_net_od(pre: dict, post: dict) -> dict:
 
 
 CHANNEL_COLORS = {'red': 'red', 'green': 'green', 'blue': 'blue'}
-LINE_STYLES = ['solid', 'dashed']
 
 
-def plot_net_od(pairs_net_od: list, pair_labels: list, doses: list, output_path: str):
+def average_pairs(pairs_net_od: list) -> dict:
     """
-    Plot Net OD vs. Dose for all RGB channels across multiple pairs.
+    Average Net OD values across multiple pairs at each dose and channel.
 
     Args:
-        pairs_net_od: List of net_od dicts (one per pair), each from compute_net_od().
-        pair_labels:  List of label strings for each pair (e.g. ['Pre-001/Post-003', ...]).
-        doses:        Dose levels in cGy (any order, will be sorted ascending for x-axis).
-        output_path:  Path to save the PNG.
+        pairs_net_od: List of net_od dicts, each from compute_net_od().
+
+    Returns:
+        Single dict: dose -> {'red': mean_net_od, 'green': mean_net_od, 'blue': mean_net_od}
+    """
+    doses = list(pairs_net_od[0].keys())
+    result = {}
+    for dose in doses:
+        result[dose] = {
+            ch: np.mean([p[dose][ch] for p in pairs_net_od])
+            for ch in ('red', 'green', 'blue')
+        }
+    return result
+
+
+def plot_net_od(net_od: dict, doses: list, output_path: str):
+    """
+    Plot Net OD vs. Dose for RGB channels (averaged across pairs).
+
+    Args:
+        net_od:      Averaged net_od dict from average_pairs(), dose -> {channel: net_od}.
+        doses:       Dose levels in cGy (any order, will be sorted ascending for x-axis).
+        output_path: Path to save the PNG.
     """
     doses_sorted = sorted(doses)
 
     fig, ax = plt.subplots(figsize=(8, 6))
 
-    for pair_idx, (net_od, label) in enumerate(zip(pairs_net_od, pair_labels)):
-        linestyle = LINE_STYLES[pair_idx % len(LINE_STYLES)]
-        for ch in ('red', 'green', 'blue'):
-            y = [net_od[dose][ch] for dose in doses_sorted]
-            ax.plot(
-                doses_sorted, y,
-                color=CHANNEL_COLORS[ch],
-                linestyle=linestyle,
-                marker='o',
-                label=f'{ch.capitalize()} — {label}'
-            )
+    for ch in ('red', 'green', 'blue'):
+        y = [net_od[dose][ch] for dose in doses_sorted]
+        ax.plot(
+            doses_sorted, y,
+            color=CHANNEL_COLORS[ch],
+            marker='o',
+            label=ch.capitalize()
+        )
 
     ax.set_xlabel('Dose (cGy)')
     ax.set_ylabel('Net Optical Density')
@@ -199,4 +214,5 @@ if __name__ == '__main__':
         pairs_net_od.append(net_od)
         pair_labels.append(f"{pre_name}/{post_name}")
 
-    plot_net_od(pairs_net_od, pair_labels, args.doses, args.output)
+    averaged = average_pairs(pairs_net_od)
+    plot_net_od(averaged, args.doses, args.output)
