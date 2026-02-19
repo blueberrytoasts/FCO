@@ -26,8 +26,8 @@ def parse_args():
                         help='Post-scan names, matched by position to --pre')
     parser.add_argument('--doses', nargs='+', type=float, required=True,
                         help='Dose levels in cGy, least-to-greatest (e.g. 0 10 50 200 500)')
-    parser.add_argument('--output', default='outputs/net_od_plot.png',
-                        help='Output PNG path (default: outputs/net_od_plot.png)')
+    parser.add_argument('--output', default=None,
+                        help='Output PNG path (default: outputs/<pre_names>_<post_names>/net_od_plot.png)')
     return parser.parse_args()
 
 
@@ -251,6 +251,10 @@ if __name__ == '__main__':
     if len(args.pre) != len(args.post):
         raise SystemExit(f"Error: --pre ({len(args.pre)} items) and --post ({len(args.post)} items) "
                          f"must have the same number of entries.")
+
+    if args.output is None:
+        folder_name = '_'.join(args.pre + args.post)
+        args.output = f'outputs/{folder_name}/net_od_plot.png'
 
     pairs_net_od = []
     pairs_net_pv = []

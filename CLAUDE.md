@@ -17,14 +17,14 @@ The main analysis pipeline is built around the `FilmAnalyzer` class which proces
 2. Auto-detect film regions via `detect_film_regions()` using horizontal pixel value profiling
 3. For each detected region:
    - Find center of mass with `find_film_center()`
-   - Extract circular ROI with `extract_roi_circular()` (current method) or full-height ROI with `extract_roi()` (legacy)
+   - Extract circular ROI with `extract_roi_circular()`
    - Calculate mean pixel values and optical density for R/G/B channels
 4. Export results to CSV + visualization plots
 
 **Critical parameters:**
 - `threshold_factor = 0.98` for film detection (values < 0.98 will miss lightly exposed films)
 - `MAX_PV_16BIT = 65536` (maximum pixel value for 16-bit scanner)
-- `roi_radius = 30` pixels (default circular ROI size)
+- `roi_radius = 25` pixels (default circular ROI size)
 - `pv_unexposed` (I₀): reference pixel value for unexposed film, defaults to 65536
 
 **Optical density calculation:**
@@ -55,11 +55,6 @@ python film_rgb_analysis.py "path/to/scan.tif"
 **Custom ROI radius:**
 ```bash
 python film_rgb_analysis.py "path/to/scan.tif" --roi-radius 50
-```
-
-**Legacy mode (full-height ROI):**
-```bash
-python film_rgb_analysis.py "path/to/scan.tif" --legacy-mode
 ```
 
 **Custom unexposed pixel value:**
@@ -111,18 +106,10 @@ The `detect_film_regions()` method uses horizontal pixel profiling on the red ch
 
 **Critical:** The threshold factor of 0.98 was determined empirically. Values too low (e.g., 0.9) will miss lightly exposed films, detecting only 6/10 films instead of all 10.
 
-### ROI Extraction Methods
-Two methods available (configured via `use_circular_roi` parameter):
-
-1. **Circular ROI (current method):**
-   - Finds center of mass of film piece within detected x-boundaries
-   - Extracts circular region of specified radius
-   - Uses `nanmean`/`nanstd` to ignore pixels outside circle
-   - More accurate for non-uniform film pieces
-
-2. **Legacy full-height ROI:**
-   - Uses entire height of detected region with 10% margin
-   - Backward compatibility mode
+### ROI Extraction
+- Finds center of mass of film piece within detected x-boundaries
+- Extracts circular region of specified radius (`roi_radius`, default 25 px)
+- Uses `nanmean`/`nanstd` to ignore pixels outside the circle
 
 ### Pixel Value to Optical Density Conversion
 The conversion handles edge cases:
