@@ -106,6 +106,26 @@ def average_od_by_dose(df: pd.DataFrame, doses: list) -> dict:
     return result
 
 
+def compute_net_od(pre: dict, post: dict) -> dict:
+    """
+    Compute Net OD = post_od - pre_od for each dose and channel.
+
+    Args:
+        pre:  Dict from average_od_by_dose for the pre scan.
+        post: Dict from average_od_by_dose for the post scan.
+
+    Returns:
+        Dict mapping dose -> {'red': net_od, 'green': net_od, 'blue': net_od}
+    """
+    result = {}
+    for dose in post:
+        result[dose] = {
+            ch: post[dose][ch] - pre[dose][ch]
+            for ch in ('red', 'green', 'blue')
+        }
+    return result
+
+
 if __name__ == '__main__':
     args = parse_args()
     if len(args.pre) != len(args.post):

@@ -67,3 +67,23 @@ def test_average_od_by_dose():
     assert result[500]['green'] == pytest.approx(0.41)
     assert result[0]['red']     == pytest.approx(0.21)
     assert result[0]['blue']    == pytest.approx(0.06)
+
+
+from net_od_plot import compute_net_od
+
+
+def test_compute_net_od():
+    """Net OD = post - pre for each dose and channel."""
+    pre = {
+        0:   {'red': 0.10, 'green': 0.15, 'blue': 0.20},
+        500: {'red': 0.50, 'green': 0.55, 'blue': 0.60},
+    }
+    post = {
+        0:   {'red': 0.12, 'green': 0.17, 'blue': 0.23},
+        500: {'red': 0.80, 'green': 0.90, 'blue': 1.00},
+    }
+    result = compute_net_od(pre, post)
+    assert result[0]['red']    == pytest.approx(0.02)
+    assert result[0]['green']  == pytest.approx(0.02)
+    assert result[500]['red']  == pytest.approx(0.30)
+    assert result[500]['blue'] == pytest.approx(0.40)
