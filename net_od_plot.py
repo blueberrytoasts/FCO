@@ -31,6 +31,31 @@ def parse_args():
     return parser.parse_args()
 
 
+
+def map_regions_to_doses(n_regions: int, doses: list) -> dict:
+    """
+    Map 1-indexed region numbers to dose levels.
+
+    Regions are ordered most-to-least exposed (highest dose first).
+    Doses are provided least-to-greatest and reversed internally.
+
+    Args:
+        n_regions: Total number of film regions detected.
+        doses: Dose levels in cGy, least-to-greatest.
+
+    Returns:
+        Dict mapping region number (1-indexed) -> dose value.
+    """
+    doses_desc = list(reversed(doses))  # highest dose first
+    replicates = n_regions // len(doses_desc)
+    mapping = {}
+    for i, dose in enumerate(doses_desc):
+        for r in range(replicates):
+            region_num = i * replicates + r + 1
+            mapping[region_num] = dose
+    return mapping
+
+
 if __name__ == '__main__':
     args = parse_args()
     if len(args.pre) != len(args.post):
