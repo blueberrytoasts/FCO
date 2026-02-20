@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 import sys
 sys.path.insert(0, 'C:/GitHub/FCO')
-from net_od_plot import map_regions_to_doses
+from net_od_analysis import map_regions_to_doses
 
 
 def test_map_regions_to_doses_basic():
@@ -49,7 +49,7 @@ def test_map_regions_to_doses_uneven_raises():
         map_regions_to_doses(11, [0, 10, 50, 200, 500])
 
 
-from net_od_plot import average_od_by_dose
+from net_od_analysis import average_od_by_dose
 
 
 def test_average_od_by_dose():
@@ -69,7 +69,7 @@ def test_average_od_by_dose():
     assert result[0]['blue']    == pytest.approx(0.06)
 
 
-from net_od_plot import compute_net_od
+from net_od_analysis import compute_net_od
 
 
 def test_compute_net_od():
