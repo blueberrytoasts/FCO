@@ -18,7 +18,10 @@
       "Bash(/c/GitHub/FCO/tests/test_net_od_plot.py:*)",
       "Bash(pip install:*)",
       "Bash(git mv:*)",
-      "Bash(pytest:*)"
+      "Bash(pytest:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:www.digikey.com)",
+      "WebSearch"
     ]
   }
 }

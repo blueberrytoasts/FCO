@@ -4,124 +4,100 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a research project for film dosimetry analysis in radiation therapy. The primary goal is to develop and validate the IR-FCO (Immediate-Read Film Cut Out) dosimetry protocol using a handheld point densitometer, comparing it against standard flatbed scanner methods and established TLD/OSLD systems.
+Research project for film dosimetry analysis in radiation therapy. Goal: develop and validate the IR-FCO (Immediate-Read Film Cut Out) protocol using a handheld Dektronics point densitometer, comparing it against flatbed scanner methods and TLD/OSLD systems.
 
-## Core Architecture
+**Clinical motivation:** Flatbed scanners are centralized (one per clinic); the handheld densitometer is portable, enabling satellite sites to read films on-site without transport.
 
-### FilmAnalyzer Class (`film_rgb_analysis.py`)
+## Scripts
 
-The main analysis pipeline is built around the `FilmAnalyzer` class which processes 48-bit TIFF scans from flatbed scanners (e.g., Epson Expression 10000XL).
+| File | Purpose |
+|---|---|
+| `film_rgb_analysis.py` | Main analysis — loads TIFFs, detects film regions, extracts ROIs, computes OD per RGB channel |
+| `net_od_analysis.py` | Computes Net OD (Post − Pre) for matched scan pairs, plots Net OD vs. Dose |
+| `rgb_combination_analysis.py` | Fits `OD_dektronics = a·OD_R + b·OD_G + c·OD_B` via linear regression |
+| `regression_analysis.py` | 2nd-order polynomial regression: `Flatbed_OD = A·(Dek_OD)² + B·(Dek_OD) + C` |
 
-**Key workflow:**
-1. Load 16-bit TIFF image (preserves full bit depth using `tifffile` library)
-2. Auto-detect film regions via `detect_film_regions()` using horizontal pixel value profiling
-3. For each detected region:
-   - Find center of mass with `find_film_center()`
-   - Extract circular ROI with `extract_roi_circular()`
-   - Calculate mean pixel values and optical density for R/G/B channels
-4. Export results to CSV + visualization plots
+## Core Architecture: FilmAnalyzer (`film_rgb_analysis.py`)
+
+**Workflow:**
+1. Load 48-bit TIFF (16-bit/channel) using `tifffile`
+2. `detect_film_regions()` — horizontal pixel profiling on red channel, threshold at `0.98 × pv_unexposed`
+3. For each region: `find_film_center()` → `extract_roi_circular()` → compute mean PV and OD for R/G/B
+4. Export CSV + visualization
 
 **Critical parameters:**
-- `threshold_factor = 0.98` for film detection (values < 0.98 will miss lightly exposed films)
-- `MAX_PV_16BIT = 65536` (maximum pixel value for 16-bit scanner)
-- `roi_radius = 25` pixels (default circular ROI size)
-- `pv_unexposed` (I₀): reference pixel value for unexposed film, defaults to 65536
+- `threshold_factor = 0.98` — empirically determined; lower values miss lightly exposed films (e.g., 0.9 detects only 6/10)
+- `MAX_PV_16BIT = 65536`
+- `roi_radius = 25` px default
+- `pv_unexposed` (I₀): defaults to 65536
 
-**Optical density calculation:**
+**OD formula:** `OD = log₁₀(I₀ / I)`, clipped to [1, pv_unexposed] to avoid log(0)
+
+**Uncertainty propagation:** `σ_OD = (1/ln(10)) × (σ_PV / PV_mean)`
+
+## RGB Linear Combination (`rgb_combination_analysis.py`)
+
+Characterizes the densitometer's effective spectral response:
 ```
-OD = log₁₀(I₀ / I)
+OD_dektronics = a·OD_R + b·OD_G + c·OD_B
 ```
-where I₀ is unexposed pixel value and I is measured pixel value.
+No intercept. Input CSV paths are module-level constants (`DEKTRONICS_CSV_PATH`, `RGB_CSV_PATH`) — update when switching scan sessions.
 
-### Calibration/Regression (`regression.py`)
+**Latest results (02-03-26):** a=0.670, b=2.421, c=−2.295 | R²=1.000, RMS=0.0009
 
-Performs 2nd-order polynomial regression to calibrate Dektronics densitometer readings against flatbed scanner measurements:
+Outputs: `outputs/rgb_combination_analysis.png`, `outputs/rgb_combination_results.csv`
 
-```
-Flatbed_OD = A*(Dek_OD)² + B*(Dek_OD) + C
-```
+## Common Commands
 
-This allows converting handheld densitometer readings to scanner-equivalent optical density values.
-
-## Common Development Tasks
-
-### Running Film Analysis
-
-**Basic usage:**
 ```bash
+# Film analysis
 python film_rgb_analysis.py "path/to/scan.tif"
-```
-
-**Custom ROI radius:**
-```bash
 python film_rgb_analysis.py "path/to/scan.tif" --roi-radius 50
-```
-
-**Custom unexposed pixel value:**
-```bash
 python film_rgb_analysis.py "path/to/scan.tif" --pv-unexposed 60000
+
+# Net OD (pre/post pairs, matched by position)
+python net_od_analysis.py --pre Pre-001 Pre-002 --post Post-003 Post-004 --doses 0 10 50 200 500
+
+# RGB combination regression
+python rgb_combination_analysis.py
+
+# Polynomial regression
+python regression_analysis.py
+
+# Tests
+python -m pytest tests/  # 13/13 tests passing
 ```
-
-### Running Regression Analysis
-
-```bash
-python regression.py
-```
-
-Expects `regression data.csv` with columns: `Dose (cGy)`, `Avg Net OD (Dektronics)`, `Avg Net OD (Flatbed)`
-
-Outputs: `outputs/dosimetry_analysis.png` with comparison plots and calibration curve.
-
-### Installing Dependencies
-
-```bash
-pip install tifffile numpy matplotlib pandas scipy --break-system-packages
-```
-
-Note: `--break-system-packages` may be needed on some systems. Falls back to PIL if `tifffile` unavailable (but may lose 16-bit depth).
 
 ## Data Organization
 
-### Input Data
-- TIFF scans stored in dated directories (e.g., `02.03.26 15 MeV Scans/`)
-- 48-bit TIFF files with naming convention: `Pre-###.tif`, `Post-###.tif`, `Test #.tif`
-- CSV calibration data: `regression data.csv`
+**Inputs:**
+- TIFFs in dated directories (e.g., `02.03.26 15 MeV Scans/`)
+- Naming: `Pre-###.tif`, `Post-###.tif`, `Test #.tif`
+- `data/regression data.csv`: columns `Dose (cGy)`, `Avg Net OD (Dektronics)`, `Avg Net OD (Flatbed)`
 
-### Output Structure
-- All analysis outputs go to `outputs/<filename>/` (auto-created per input file)
-- Each output folder contains:
-  - `film_analysis_plot.png`: visualization with detected regions, pixel values, optical density
-  - `film_analysis_results.csv`: tabular results with PV and OD for each region
+**Outputs** (gitignored, auto-created):
+- `outputs/<filename>/film_analysis_plot.png` + `film_analysis_results.csv`
+- `outputs/<pre>_<post>/net_od_plot.csv` + `net_od_plot.png`
+- `outputs/rgb_combination_analysis.png` + `rgb_combination_results.csv`
 
-The `outputs/` directory is gitignored to prevent committing generated results.
+## Tests
 
-## Important Implementation Details
+`tests/` contains unit tests for `net_od_analysis` and `rgb_combination_analysis`. Run with `pytest`. All 13 tests pass as of 2026-02-19.
 
-### Film Detection Algorithm
-The `detect_film_regions()` method uses horizontal pixel profiling on the red channel:
-1. Calculate mean pixel value for each column
-2. Threshold at 0.98 × pv_unexposed
-3. Find continuous regions where mean PV < threshold
-4. Filter out regions narrower than `min_width` (default 20 pixels)
-
-**Critical:** The threshold factor of 0.98 was determined empirically. Values too low (e.g., 0.9) will miss lightly exposed films, detecting only 6/10 films instead of all 10.
-
-### ROI Extraction
-- Finds center of mass of film piece within detected x-boundaries
-- Extracts circular region of specified radius (`roi_radius`, default 25 px)
-- Uses `nanmean`/`nanstd` to ignore pixels outside the circle
-
-### Pixel Value to Optical Density Conversion
-The conversion handles edge cases:
-- Clips pixel values to range [1, pv_unexposed] to avoid log(0) or log(negative)
-- Propagates uncertainty: `σ_OD = (1/ln(10)) × (σ_PV / PV_mean)`
+Note: import is `net_od_analysis` (not `net_od_plot` — module was renamed).
 
 ## Project Specific Aims
 
-See README.md for full details, but analysis should support:
+1. **Aim 1:** Protocol validation — IR-FCO vs. flatbed scanner
+2. **Aim 2:** Therapeutic dose range (100–1000 cGy)
+3. **Aim 3:** Low-dose out-of-field monitoring (0.1–100 cGy)
 
-1. **Specific Aim 1:** Protocol validation comparing IR-FCO vs flatbed scanner
-2. **Specific Aim 2:** Therapeutic dose range (100-1000 cGy) validation
-3. **Specific Aim 3:** Low-dose out-of-field monitoring (0.1-100 cGy)
+Uncertainty analysis follows AAPM TG-191 guidelines.
 
-Uncertainty analysis follows AAPM TG-191 guidelines. Comparisons with TLD and OSLD systems are planned.
+## Dependencies
+
+```bash
+pip install tifffile numpy matplotlib pandas scipy
+```
+
+Falls back to PIL if `tifffile` unavailable (loses 16-bit depth).
