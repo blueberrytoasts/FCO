@@ -1,7 +1,7 @@
 import re
 import pyperclip
 
-INPUT_FILE = "testfiledens.txt"
+INPUT_FILE = "data/log_text.txt"
 
 def get_clean_temps(file_path):
     pattern = re.compile(r"\((\d+\.\d+)C\)")
@@ -30,8 +30,8 @@ def get_clean_temps(file_path):
     # Push to clipboard
     pyperclip.copy(final_string)
     
-    print(f"Success! {len(temps)} temperatures copied.")
-    print("Go to Excel and Ctrl+V. They will paste horizontally now.")
+    print(f"Success! {len(temps)} temperatures horizontally copied.")
+    print("Go to Excel and Ctrl+V")
 
 if __name__ == "__main__":
     get_clean_temps(INPUT_FILE)
