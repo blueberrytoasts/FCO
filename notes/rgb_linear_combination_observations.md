@@ -4,7 +4,7 @@
 ## Model
 `OD_dektronics = a·OD_R + b·OD_G + c·OD_B`
 
-Current coefficients: a = 0.681, b = 1.619, c = −1.368
+Current coefficients: a = 0.681, b = 1.619, c = −1.368 using post OD.
 
 ## Why c (blue coefficient) is negative
 
