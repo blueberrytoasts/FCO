@@ -21,7 +21,8 @@
       "Bash(pytest:*)",
       "Bash(ls:*)",
       "WebFetch(domain:www.digikey.com)",
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:look.ams-osram.com)"
     ]
   }
 }

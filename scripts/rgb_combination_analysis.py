@@ -39,7 +39,7 @@ def fit_linear_combination(X: np.ndarray, y: np.ndarray) -> tuple[float, float, 
     Returns:
         (a, b, c) as floats
     """
-    coeffs, _, _, _ = np.linalg.lstsq(X, y, rcond=None)
+    coeffs, _, _, _ = np.linalg.lstsq(X, y, rcond=None) # coefficients, residuals, rank, and singular values
     return float(coeffs[0]), float(coeffs[1]), float(coeffs[2])
 
 
@@ -87,7 +87,7 @@ def load_data() -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     dek = pd.read_csv(DEKTRONICS_CSV_PATH)
     dek = dek.rename(columns={"Dose (cGy)": "dose_cgy", "Avg Net OD (Dektronics)": "od_dektronics"})
 
-    merged = pd.merge(avg_by_dose, dek[["dose_cgy", "od_dektronics"]], on="dose_cgy")
+    merged = pd.merge(avg_by_dose, dek[["dose_cgy", "od_dektronics"]], on="dose_cgy") # Meres both csv files together
     if len(merged) == 0:
         raise ValueError(
             "Merge produced no rows — check dose values in REGION_DOSES align with "
@@ -95,8 +95,8 @@ def load_data() -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         )
 
     doses = merged["dose_cgy"].to_numpy(dtype=float)
-    X = merged[["red_od", "green_od", "blue_od"]].to_numpy(dtype=float)
-    y = merged["od_dektronics"].to_numpy(dtype=float)
+    X = merged[["red_od", "green_od", "blue_od"]].to_numpy(dtype=float) # Optical density of RGB channels
+    y = merged["od_dektronics"].to_numpy(dtype=float) # OD taken from the densitometer
     return doses, X, y
 
 

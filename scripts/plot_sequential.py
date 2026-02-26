@@ -114,7 +114,7 @@ def plot_sequential(
 
     ax.set_xlabel(xlabel, fontsize=12)
     ax.set_ylabel(ylabel, fontsize=12)
-    ax.set_title(title or f"Sequential values — {path.name}  ({n_rows} rows × {n_cols} cols = {n_points} pts)", fontsize=13)
+    ax.set_title(title or f"Indexed OD — {path.name}", fontsize=13)
     if grid:
         ax.grid(True, which="major", linestyle=":", alpha=0.5)
 
@@ -136,7 +136,7 @@ def main():
     parser = argparse.ArgumentParser(description="Plot CSV values sequentially by index (row-major).")
     parser.add_argument("csv", help="Path to CSV file")
     parser.add_argument("--title", default=None, help="Plot title (auto-generated if omitted)")
-    parser.add_argument("--ylabel", default="Value", help="Y-axis label (default: Value)")
+    parser.add_argument("--ylabel", default="OD", help="Y-axis label (default: OD)")
     parser.add_argument("--xlabel", default="Index", help="X-axis label (default: Index)")
     parser.add_argument("--no-grid", dest="grid", action="store_false", help="Disable grid")
     parser.add_argument("--no-line", dest="line", action="store_false", help="Scatter only (no connecting line)")
