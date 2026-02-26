@@ -3,6 +3,7 @@
 RGB Linear Combination Regression
 ==================================
 Fits OD_dektronics = a*OD_R + b*OD_G + c*OD_B using least squares.
+Averages two post-scan CSVs (no pre subtraction, no net OD).
 Computes R² and RMS. Saves a 2-panel plot and CSV to outputs/.
 
 Usage:
@@ -14,9 +15,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-# Input data sources — update RGB_CSV_PATH when re-running with a new scan session
+# Two post-irradiation flatbed scan CSVs to average
+POST_CSV_PATHS = [
+    Path("outputs/Post-003/film_analysis_results.csv"),
+    Path("outputs/Post-004/film_analysis_results.csv"),
+]
+
+# Dektronics reference OD per dose
 DEKTRONICS_CSV_PATH = Path("data/regression data.csv")
-RGB_CSV_PATH = Path("outputs/Pre-001_Pre-002_Post-003_Post-004/net_od_plot.csv")
+
+# Dose (cGy) for each region, in the order they appear in the scan (1-indexed)
+# Two film pieces per dose level → 2 entries per dose
+REGION_DOSES = [500, 500, 200, 200, 50, 50, 10, 10, 0, 0]
 
 
 def fit_linear_combination(X: np.ndarray, y: np.ndarray) -> tuple[float, float, float]:
@@ -48,31 +58,45 @@ def compute_rms(y: np.ndarray, y_pred: np.ndarray) -> float:
 
 
 def load_data() -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Load and pair Dektronics OD with flatbed RGB Net OD by dose.
+    """Average two post-scan CSVs by region, assign doses, merge with Dektronics OD.
 
     Returns:
         doses: shape (n,)
-        X: shape (n, 3) — OD_R, OD_G, OD_B from flatbed
+        X: shape (n, 3) — averaged OD_R, OD_G, OD_B from flatbed post scans
         y: shape (n,)   — OD_dektronics
     """
-    dek = pd.read_csv(DEKTRONICS_CSV_PATH)
-    rgb = pd.read_csv(RGB_CSV_PATH)
-
-    dek = dek.rename(columns={"Dose (cGy)": "dose_cgy"})
-    merged = pd.merge(
-        dek[["dose_cgy", "Avg Net OD (Dektronics)"]],
-        rgb[["dose_cgy", "net_red_od", "net_green_od", "net_blue_od"]],
-        on="dose_cgy",
+    dfs = [pd.read_csv(p) for p in POST_CSV_PATHS]
+    avg = (
+        pd.concat(dfs)
+        .groupby("region")[["red_od", "green_od", "blue_od"]]
+        .mean()
+        .reset_index()
+        .sort_values("region")
+        .reset_index(drop=True)
     )
+
+    if len(avg) != len(REGION_DOSES):
+        raise ValueError(
+            f"REGION_DOSES has {len(REGION_DOSES)} entries but scan has {len(avg)} regions. "
+            "Update REGION_DOSES to match."
+        )
+
+    avg["dose_cgy"] = REGION_DOSES
+    avg_by_dose = avg.groupby("dose_cgy")[["red_od", "green_od", "blue_od"]].mean().reset_index()
+
+    dek = pd.read_csv(DEKTRONICS_CSV_PATH)
+    dek = dek.rename(columns={"Dose (cGy)": "dose_cgy", "Avg Net OD (Dektronics)": "od_dektronics"})
+
+    merged = pd.merge(avg_by_dose, dek[["dose_cgy", "od_dektronics"]], on="dose_cgy")
     if len(merged) == 0:
         raise ValueError(
-            "Merge produced no rows — check that dose_cgy values align between "
-            f"{DEKTRONICS_CSV_PATH} and {RGB_CSV_PATH}."
+            "Merge produced no rows — check dose values in REGION_DOSES align with "
+            f"{DEKTRONICS_CSV_PATH}."
         )
 
     doses = merged["dose_cgy"].to_numpy(dtype=float)
-    X = merged[["net_red_od", "net_green_od", "net_blue_od"]].to_numpy(dtype=float)
-    y = merged["Avg Net OD (Dektronics)"].to_numpy(dtype=float)
+    X = merged[["red_od", "green_od", "blue_od"]].to_numpy(dtype=float)
+    y = merged["od_dektronics"].to_numpy(dtype=float)
     return doses, X, y
 
 
@@ -88,9 +112,9 @@ def save_results_csv(
             "dose_cgy": doses,
             "od_dektronics": y,
             "od_predicted": y_pred,
-            "net_red_od": X[:, 0],
-            "net_green_od": X[:, 1],
-            "net_blue_od": X[:, 2],
+            "red_od": X[:, 0],
+            "green_od": X[:, 1],
+            "blue_od": X[:, 2],
         }
     )
     path = output_dir / "rgb_combination_results.csv"
@@ -126,15 +150,15 @@ def save_plot(
     ax1.legend()
     ax1.grid(True, alpha=0.3)
 
-    # Right: Net OD vs Dose — all curves
+    # Right: OD vs Dose — all curves
     ax2.plot(doses, X[:, 0], "r-o", label="Flatbed Red OD")
     ax2.plot(doses, X[:, 1], "g-o", label="Flatbed Green OD")
     ax2.plot(doses, X[:, 2], "b-o", label="Flatbed Blue OD")
     ax2.plot(doses, y, "k-s", linewidth=2, label="Dektronics OD (measured)")
     ax2.plot(doses, y_pred, "k--^", linewidth=2, label="Combined OD (predicted)")
     ax2.set_xlabel("Dose (cGy)")
-    ax2.set_ylabel("Net OD")
-    ax2.set_title("Net OD vs Dose")
+    ax2.set_ylabel("OD")
+    ax2.set_title("OD vs Dose")
     ax2.legend()
     ax2.grid(True, alpha=0.3)
 
