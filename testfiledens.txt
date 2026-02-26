@@ -1,200 +1,400 @@
-I/state_controller [    414304 main] State transition: 3 -> 4
-D/task_sensor [    414328 sensor] sensor_control_read_temperature
-I/sensor   [    414329 main] Starting sensor target read
-D/task_sensor [    414340 sensor] sensor_control_set_mode: 1
-D/task_sensor [    414340 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    414342 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    414343 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    414345 sensor] sensor_control_start
-D/task_sensor [    414349 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    414421 sensor] TSL2585[2]: MOD0=4992, Gain=[16x], Time=1.00ms
-D/task_sensor [    414422 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    414423 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    414475 sensor] TSL2585[5]: MOD0=49836, Gain=[16x], Time=10.00ms
-D/task_sensor [    414477 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    414890 sensor] TSL2585[7]: MOD0=995420, Gain=[16x], Time=200.00ms
-D/task_sensor [    415097 sensor] TSL2585[8]: MOD0=994163, Gain=[16x], Time=200.00ms
-D/task_sensor [    415099 sensor] sensor_control_stop
-I/sensor   [    415100 main] Sensor read complete
-I/densitometer [    415101 main] D=0.66, VALUE=19.952028,19.983517(23.6C)
-I/state_controller [    415127 main] State transition: 4 -> 3
-I/state_controller [    415419 main] State transition: 3 -> 4
-D/task_sensor [    415443 sensor] sensor_control_read_temperature
-I/sensor   [    415444 main] Starting sensor target read
-D/task_sensor [    415455 sensor] sensor_control_set_mode: 1
-D/task_sensor [    415455 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    415457 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    415458 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    415459 sensor] sensor_control_start
-D/task_sensor [    415464 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    415536 sensor] TSL2585[2]: MOD0=4976, Gain=[16x], Time=1.00ms
-D/task_sensor [    415537 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    415538 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    415590 sensor] TSL2585[5]: MOD0=49703, Gain=[16x], Time=10.00ms
-D/task_sensor [    415592 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    416005 sensor] TSL2585[7]: MOD0=993802, Gain=[16x], Time=200.00ms
-D/task_sensor [    416213 sensor] TSL2585[8]: MOD0=992829, Gain=[16x], Time=200.00ms
-D/task_sensor [    416215 sensor] sensor_control_stop
-I/sensor   [    416216 main] Sensor read complete
-I/densitometer [    416217 main] D=0.66, VALUE=19.922424,19.952818(23.6C)
-I/state_controller [    416243 main] State transition: 4 -> 3
-I/state_controller [    416463 main] State transition: 3 -> 4
-D/task_sensor [    416488 sensor] sensor_control_read_temperature
-I/sensor   [    416489 main] Starting sensor target read
-D/task_sensor [    416499 sensor] sensor_control_set_mode: 1
-D/task_sensor [    416499 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    416501 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    416502 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    416503 sensor] sensor_control_start
-D/task_sensor [    416508 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    416580 sensor] TSL2585[2]: MOD0=4960, Gain=[16x], Time=1.00ms
-D/task_sensor [    416581 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    416582 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    416634 sensor] TSL2585[5]: MOD0=49636, Gain=[16x], Time=10.00ms
-D/task_sensor [    416635 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    417049 sensor] TSL2585[7]: MOD0=992739, Gain=[16x], Time=200.00ms
-D/task_sensor [    417257 sensor] TSL2585[8]: MOD0=991949, Gain=[16x], Time=200.00ms
-D/task_sensor [    417258 sensor] sensor_control_stop
-I/sensor   [    417259 main] Sensor read complete
-I/densitometer [    417260 main] D=0.66, VALUE=19.902939,19.934349(23.6C)
-I/state_controller [    417286 main] State transition: 4 -> 3
-I/state_controller [    417536 main] State transition: 3 -> 4
-D/task_sensor [    417560 sensor] sensor_control_read_temperature
-I/sensor   [    417561 main] Starting sensor target read
-D/task_sensor [    417572 sensor] sensor_control_set_mode: 1
-D/task_sensor [    417572 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    417574 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    417575 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    417576 sensor] sensor_control_start
-D/task_sensor [    417581 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    417653 sensor] TSL2585[2]: MOD0=4960, Gain=[16x], Time=1.00ms
-D/task_sensor [    417655 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    417656 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    417708 sensor] TSL2585[5]: MOD0=49616, Gain=[16x], Time=10.00ms
-D/task_sensor [    417709 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    418123 sensor] TSL2585[7]: MOD0=992213, Gain=[16x], Time=200.00ms
-D/task_sensor [    418330 sensor] TSL2585[8]: MOD0=991285, Gain=[16x], Time=200.00ms
-D/task_sensor [    418332 sensor] sensor_control_stop
-I/sensor   [    418333 main] Sensor read complete
-I/densitometer [    418334 main] D=0.66, VALUE=19.891006,19.921352(23.6C)
-I/state_controller [    418360 main] State transition: 4 -> 3
-I/state_controller [    418440 main] State transition: 3 -> 4
-D/task_sensor [    418465 sensor] sensor_control_read_temperature
-I/sensor   [    418466 main] Starting sensor target read
-D/task_sensor [    418477 sensor] sensor_control_set_mode: 1
-D/task_sensor [    418477 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    418478 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    418480 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    418481 sensor] sensor_control_start
-D/task_sensor [    418486 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    418557 sensor] TSL2585[2]: MOD0=4960, Gain=[16x], Time=1.00ms
-D/task_sensor [    418559 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    418561 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    418612 sensor] TSL2585[5]: MOD0=49533, Gain=[16x], Time=10.00ms
-D/task_sensor [    418613 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    419027 sensor] TSL2585[7]: MOD0=991103, Gain=[16x], Time=200.00ms
-D/task_sensor [    419234 sensor] TSL2585[8]: MOD0=990386, Gain=[16x], Time=200.00ms
-D/task_sensor [    419236 sensor] sensor_control_stop
-I/sensor   [    419237 main] Sensor read complete
-I/densitometer [    419238 main] D=0.66, VALUE=19.870859,19.902220(23.6C)
-I/state_controller [    419264 main] State transition: 4 -> 3
-I/state_controller [    419296 main] State transition: 3 -> 4
-D/task_sensor [    419320 sensor] sensor_control_read_temperature
-I/sensor   [    419321 main] Starting sensor target read
-D/task_sensor [    419332 sensor] sensor_control_set_mode: 1
-D/task_sensor [    419332 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    419334 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    419335 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    419337 sensor] sensor_control_start
-D/task_sensor [    419341 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    419413 sensor] TSL2585[2]: MOD0=4944, Gain=[16x], Time=1.00ms
-D/task_sensor [    419414 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    419416 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    419467 sensor] TSL2585[5]: MOD0=49469, Gain=[16x], Time=10.00ms
-D/task_sensor [    419468 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    419882 sensor] TSL2585[7]: MOD0=990282, Gain=[16x], Time=200.00ms
-D/task_sensor [    420089 sensor] TSL2585[8]: MOD0=989739, Gain=[16x], Time=200.00ms
-D/task_sensor [    420091 sensor] sensor_control_stop
-I/sensor   [    420092 main] Sensor read complete
-I/densitometer [    420093 main] D=0.66, VALUE=19.856138,19.887476(23.6C)
-I/state_controller [    420119 main] State transition: 4 -> 3
-I/state_controller [    420180 main] State transition: 3 -> 4
-D/task_sensor [    420204 sensor] sensor_control_read_temperature
-I/sensor   [    420205 main] Starting sensor target read
-D/task_sensor [    420216 sensor] sensor_control_set_mode: 1
-D/task_sensor [    420216 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    420218 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    420219 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    420221 sensor] sensor_control_start
-D/task_sensor [    420225 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    420297 sensor] TSL2585[2]: MOD0=4944, Gain=[16x], Time=1.00ms
-D/task_sensor [    420298 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    420300 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    420351 sensor] TSL2585[5]: MOD0=49469, Gain=[16x], Time=10.00ms
-D/task_sensor [    420353 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    420766 sensor] TSL2585[7]: MOD0=989776, Gain=[16x], Time=200.00ms
-D/task_sensor [    420974 sensor] TSL2585[8]: MOD0=989147, Gain=[16x], Time=200.00ms
-D/task_sensor [    420975 sensor] sensor_control_stop
-I/sensor   [    420976 main] Sensor read complete
-I/densitometer [    420977 main] D=0.66, VALUE=19.845127,19.876448(23.6C)
-I/state_controller [    421003 main] State transition: 4 -> 3
-I/state_controller [    421054 main] State transition: 3 -> 4
-D/task_sensor [    421078 sensor] sensor_control_read_temperature
-I/sensor   [    421079 main] Starting sensor target read
-D/task_sensor [    421090 sensor] sensor_control_set_mode: 1
-D/task_sensor [    421090 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    421092 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    421093 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    421095 sensor] sensor_control_start
-D/task_sensor [    421099 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    421171 sensor] TSL2585[2]: MOD0=4944, Gain=[16x], Time=1.00ms
-D/task_sensor [    421172 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    421173 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    421225 sensor] TSL2585[5]: MOD0=49437, Gain=[16x], Time=10.00ms
-D/task_sensor [    421227 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    421641 sensor] TSL2585[7]: MOD0=989115, Gain=[16x], Time=200.00ms
-D/task_sensor [    421848 sensor] TSL2585[8]: MOD0=988522, Gain=[16x], Time=200.00ms
-D/task_sensor [    421850 sensor] sensor_control_stop
-I/sensor   [    421851 main] Sensor read complete
-I/densitometer [    421852 main] D=0.66, VALUE=19.832230,19.863529(23.6C)
-I/state_controller [    421878 main] State transition: 4 -> 3
-I/state_controller [    421903 main] State transition: 3 -> 4
-D/task_sensor [    421928 sensor] sensor_control_read_temperature
-I/sensor   [    421929 main] Starting sensor target read
-D/task_sensor [    421939 sensor] sensor_control_set_mode: 1
-D/task_sensor [    421939 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    421941 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    421942 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    421943 sensor] sensor_control_start
-D/task_sensor [    421948 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    422020 sensor] TSL2585[2]: MOD0=4944, Gain=[16x], Time=1.00ms
-D/task_sensor [    422021 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    422022 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    422074 sensor] TSL2585[5]: MOD0=49382, Gain=[16x], Time=10.00ms
-D/task_sensor [    422075 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    422489 sensor] TSL2585[7]: MOD0=988616, Gain=[16x], Time=200.00ms
-D/task_sensor [    422697 sensor] TSL2585[8]: MOD0=988035, Gain=[16x], Time=200.00ms
-D/task_sensor [    422699 sensor] sensor_control_stop
-I/sensor   [    422700 main] Sensor read complete
-I/densitometer [    422701 main] D=0.66, VALUE=19.822342,19.853626(23.6C)
-I/state_controller [    422727 main] State transition: 4 -> 3
-I/state_controller [    422917 main] State transition: 3 -> 4
-D/task_sensor [    422941 sensor] sensor_control_read_temperature
-I/sensor   [    422942 main] Starting sensor target read
-D/task_sensor [    422953 sensor] sensor_control_set_mode: 1
-D/task_sensor [    422953 sensor] sensor_control_set_gain: 9, 0x01
-D/task_sensor [    422955 sensor] sensor_control_set_integration: 719, 0
-D/task_sensor [    422956 sensor] sensor_control_set_agc_enabled: 9
-D/task_sensor [    422957 sensor] sensor_control_start
-D/task_sensor [    422962 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
-D/task_sensor [    423034 sensor] TSL2585[2]: MOD0=4944, Gain=[16x], Time=1.00ms
-D/task_sensor [    423036 sensor] sensor_control_set_agc_disabled
-D/task_sensor [    423037 sensor] sensor_control_set_integration: 719, 9
-D/task_sensor [    423088 sensor] TSL2585[5]: MOD0=49439, Gain=[16x], Time=10.00ms
-D/task_sensor [    423090 sensor] sensor_control_set_integration: 719, 199
-D/task_sensor [    423504 sensor] TSL2585[7]: MOD0=989020, Gain=[16x], Time=200.00ms
-D/task_sensor [    423711 sensor] TSL2585[8]: MOD0=988514, Gain=[16x], Time=200.00ms
-D/task_sensor [    423713 sensor] sensor_control_stop
-I/sensor   [    423714 main] Sensor read complete
-I/densitometer [    423715 main] D=0.66, VALUE=19.831198,19.862495(23.6C)
-I/state_controller [    423741 main] State transition: 4 -> 3
+I/state_controller [   1815117 main] State transition: 3 -> 4
+D/task_sensor [   1815141 sensor] sensor_control_read_temperature
+I/sensor   [   1815143 main] Starting sensor target read
+D/task_sensor [   1815153 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1815153 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1815154 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1815156 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1815157 sensor] sensor_control_start
+D/task_sensor [   1815162 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1815234 sensor] TSL2585[2]: MOD0=4864, Gain=[16x], Time=1.00ms
+D/task_sensor [   1815235 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1815237 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1815288 sensor] TSL2585[5]: MOD0=48656, Gain=[16x], Time=10.00ms
+D/task_sensor [   1815290 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1815704 sensor] TSL2585[7]: MOD0=971328, Gain=[16x], Time=200.00ms
+D/task_sensor [   1815912 sensor] TSL2585[8]: MOD0=969911, Gain=[16x], Time=200.00ms
+D/task_sensor [   1815913 sensor] sensor_control_stop
+I/sensor   [   1815914 main] Sensor read complete
+I/densitometer [   1815916 main] D=0.67, VALUE=19.467222,19.601332(29.5C)
+I/state_controller [   1815940 main] State transition: 4 -> 3
+I/state_controller [   1818023 main] State transition: 3 -> 4
+D/task_sensor [   1818047 sensor] sensor_control_read_temperature
+I/sensor   [   1818048 main] Starting sensor target read
+D/task_sensor [   1818059 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1818060 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1818061 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1818062 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1818063 sensor] sensor_control_start
+D/task_sensor [   1818068 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1818140 sensor] TSL2585[2]: MOD0=4864, Gain=[16x], Time=1.00ms
+D/task_sensor [   1818142 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1818143 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1818195 sensor] TSL2585[5]: MOD0=48602, Gain=[16x], Time=10.00ms
+D/task_sensor [   1818196 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1818611 sensor] TSL2585[7]: MOD0=970226, Gain=[16x], Time=200.00ms
+D/task_sensor [   1818819 sensor] TSL2585[8]: MOD0=968855, Gain=[16x], Time=200.00ms
+D/task_sensor [   1818821 sensor] sensor_control_stop
+I/sensor   [   1818822 main] Sensor read complete
+I/densitometer [   1818823 main] D=0.67, VALUE=19.445581,19.578369(29.4C)
+I/state_controller [   1818847 main] State transition: 4 -> 3
+I/state_controller [   1820667 main] State transition: 3 -> 4
+D/task_sensor [   1820691 sensor] sensor_control_read_temperature
+I/sensor   [   1820693 main] Starting sensor target read
+D/task_sensor [   1820703 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1820704 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1820705 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1820706 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1820707 sensor] sensor_control_start
+D/task_sensor [   1820712 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1820784 sensor] TSL2585[2]: MOD0=4864, Gain=[16x], Time=1.00ms
+D/task_sensor [   1820785 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1820787 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1820839 sensor] TSL2585[5]: MOD0=48572, Gain=[16x], Time=10.00ms
+D/task_sensor [   1820840 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1821255 sensor] TSL2585[7]: MOD0=969742, Gain=[16x], Time=200.00ms
+D/task_sensor [   1821463 sensor] TSL2585[8]: MOD0=968544, Gain=[16x], Time=200.00ms
+D/task_sensor [   1821464 sensor] sensor_control_stop
+I/sensor   [   1821465 main] Sensor read complete
+I/densitometer [   1821466 main] D=0.67, VALUE=19.437609,19.570341(29.4C)
+I/state_controller [   1821491 main] State transition: 4 -> 3
+I/state_controller [   1823539 main] State transition: 3 -> 4
+D/task_sensor [   1823564 sensor] sensor_control_read_temperature
+I/sensor   [   1823565 main] Starting sensor target read
+D/task_sensor [   1823576 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1823577 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1823578 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1823579 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1823580 sensor] sensor_control_start
+D/task_sensor [   1823585 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1823657 sensor] TSL2585[2]: MOD0=4864, Gain=[16x], Time=1.00ms
+D/task_sensor [   1823659 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1823660 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1823712 sensor] TSL2585[5]: MOD0=48539, Gain=[16x], Time=10.00ms
+D/task_sensor [   1823713 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1824127 sensor] TSL2585[7]: MOD0=969240, Gain=[16x], Time=200.00ms
+D/task_sensor [   1824335 sensor] TSL2585[8]: MOD0=967984, Gain=[16x], Time=200.00ms
+D/task_sensor [   1824337 sensor] sensor_control_stop
+I/sensor   [   1824338 main] Sensor read complete
+I/densitometer [   1824339 main] D=0.67, VALUE=19.426958,19.559618(29.4C)
+I/state_controller [   1824363 main] State transition: 4 -> 3
+I/state_controller [   1826278 main] State transition: 3 -> 4
+D/task_sensor [   1826303 sensor] sensor_control_read_temperature
+I/sensor   [   1826304 main] Starting sensor target read
+D/task_sensor [   1826315 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1826316 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1826317 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1826318 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1826319 sensor] sensor_control_start
+D/task_sensor [   1826324 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1826396 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   1826398 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1826399 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1826451 sensor] TSL2585[5]: MOD0=48512, Gain=[16x], Time=10.00ms
+D/task_sensor [   1826452 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1826867 sensor] TSL2585[7]: MOD0=968870, Gain=[16x], Time=200.00ms
+D/task_sensor [   1827074 sensor] TSL2585[8]: MOD0=967552, Gain=[16x], Time=200.00ms
+D/task_sensor [   1827076 sensor] sensor_control_stop
+I/sensor   [   1827077 main] Sensor read complete
+I/densitometer [   1827078 main] D=0.67, VALUE=19.418917,19.551521(29.4C)
+I/state_controller [   1827102 main] State transition: 4 -> 3
+I/state_controller [   1829200 main] State transition: 3 -> 4
+D/task_sensor [   1829225 sensor] sensor_control_read_temperature
+I/sensor   [   1829226 main] Starting sensor target read
+D/task_sensor [   1829237 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1829238 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1829239 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1829240 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1829241 sensor] sensor_control_start
+D/task_sensor [   1829246 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1829318 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   1829319 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1829321 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1829372 sensor] TSL2585[5]: MOD0=48492, Gain=[16x], Time=10.00ms
+D/task_sensor [   1829374 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1829788 sensor] TSL2585[7]: MOD0=968071, Gain=[16x], Time=200.00ms
+D/task_sensor [   1829996 sensor] TSL2585[8]: MOD0=966734, Gain=[16x], Time=200.00ms
+D/task_sensor [   1829998 sensor] sensor_control_stop
+I/sensor   [   1829999 main] Sensor read complete
+I/densitometer [   1830000 main] D=0.67, VALUE=19.402700,19.535194(29.4C)
+I/state_controller [   1830024 main] State transition: 4 -> 3
+I/state_controller [   1831938 main] State transition: 3 -> 4
+D/task_sensor [   1831962 sensor] sensor_control_read_temperature
+I/sensor   [   1831964 main] Starting sensor target read
+D/task_sensor [   1831974 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1831975 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1831976 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1831977 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1831978 sensor] sensor_control_start
+D/task_sensor [   1831983 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1832055 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   1832056 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1832058 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1832109 sensor] TSL2585[5]: MOD0=48472, Gain=[16x], Time=10.00ms
+D/task_sensor [   1832111 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1832525 sensor] TSL2585[7]: MOD0=967816, Gain=[16x], Time=200.00ms
+D/task_sensor [   1832733 sensor] TSL2585[8]: MOD0=966496, Gain=[16x], Time=200.00ms
+D/task_sensor [   1832735 sensor] sensor_control_stop
+I/sensor   [   1832736 main] Sensor read complete
+I/densitometer [   1832737 main] D=0.67, VALUE=19.397757,19.530218(29.4C)
+I/state_controller [   1832761 main] State transition: 4 -> 3
+I/state_controller [   1834762 main] State transition: 3 -> 4
+D/task_sensor [   1834787 sensor] sensor_control_read_temperature
+I/sensor   [   1834788 main] Starting sensor target read
+D/task_sensor [   1834799 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1834800 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1834801 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1834802 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1834803 sensor] sensor_control_start
+D/task_sensor [   1834808 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1834880 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   1834881 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1834883 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1834934 sensor] TSL2585[5]: MOD0=48447, Gain=[16x], Time=10.00ms
+D/task_sensor [   1834936 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1835350 sensor] TSL2585[7]: MOD0=967344, Gain=[16x], Time=200.00ms
+D/task_sensor [   1835558 sensor] TSL2585[8]: MOD0=966179, Gain=[16x], Time=200.00ms
+D/task_sensor [   1835560 sensor] sensor_control_stop
+I/sensor   [   1835561 main] Sensor read complete
+I/densitometer [   1835562 main] D=0.67, VALUE=19.389845,19.522251(29.4C)
+I/state_controller [   1835586 main] State transition: 4 -> 3
+I/state_controller [   1837309 main] State transition: 3 -> 4
+D/task_sensor [   1837334 sensor] sensor_control_read_temperature
+I/sensor   [   1837335 main] Starting sensor target read
+D/task_sensor [   1837346 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1837347 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1837348 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1837349 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1837350 sensor] sensor_control_start
+D/task_sensor [   1837355 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1837427 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   1837429 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1837430 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1837481 sensor] TSL2585[5]: MOD0=48416, Gain=[16x], Time=10.00ms
+D/task_sensor [   1837483 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1837897 sensor] TSL2585[7]: MOD0=966816, Gain=[16x], Time=200.00ms
+D/task_sensor [   1838105 sensor] TSL2585[8]: MOD0=965399, Gain=[16x], Time=200.00ms
+D/task_sensor [   1838107 sensor] sensor_control_stop
+I/sensor   [   1838107 main] Sensor read complete
+I/densitometer [   1838109 main] D=0.67, VALUE=19.376728,19.509045(29.4C)
+I/state_controller [   1838133 main] State transition: 4 -> 3
+I/state_controller [   1839669 main] State transition: 3 -> 4
+D/task_sensor [   1839693 sensor] sensor_control_read_temperature
+I/sensor   [   1839694 main] Starting sensor target read
+D/task_sensor [   1839705 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1839706 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1839707 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1839708 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1839709 sensor] sensor_control_start
+D/task_sensor [   1839714 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1839786 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   1839788 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1839789 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1839841 sensor] TSL2585[5]: MOD0=48403, Gain=[16x], Time=10.00ms
+D/task_sensor [   1839842 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1840256 sensor] TSL2585[7]: MOD0=966631, Gain=[16x], Time=200.00ms
+D/task_sensor [   1840464 sensor] TSL2585[8]: MOD0=965374, Gain=[16x], Time=200.00ms
+D/task_sensor [   1840466 sensor] sensor_control_stop
+I/sensor   [   1840467 main] Sensor read complete
+I/densitometer [   1840468 main] D=0.67, VALUE=19.374620,19.506924(29.4C)
+I/state_controller [   1840492 main] State transition: 4 -> 3
+I/state_controller [   1993780 main] State transition: 3 -> 4
+D/task_sensor [   1993805 sensor] sensor_control_read_temperature
+I/sensor   [   1993806 main] Starting sensor target read
+D/task_sensor [   1993817 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1993818 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1993819 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1993820 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1993821 sensor] sensor_control_start
+D/task_sensor [   1993826 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1993898 sensor] TSL2585[2]: MOD0=4864, Gain=[16x], Time=1.00ms
+D/task_sensor [   1993900 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1993901 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1993953 sensor] TSL2585[5]: MOD0=48668, Gain=[16x], Time=10.00ms
+D/task_sensor [   1993954 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1994368 sensor] TSL2585[7]: MOD0=971362, Gain=[16x], Time=200.00ms
+D/task_sensor [   1994576 sensor] TSL2585[8]: MOD0=970083, Gain=[16x], Time=200.00ms
+D/task_sensor [   1994578 sensor] sensor_control_stop
+I/sensor   [   1994579 main] Sensor read complete
+I/densitometer [   1994580 main] D=0.67, VALUE=19.469288,19.597551(29.2C)
+I/state_controller [   1994604 main] State transition: 4 -> 3
+I/state_controller [   1996651 main] State transition: 3 -> 4
+D/task_sensor [   1996675 sensor] sensor_control_read_temperature
+I/sensor   [   1996677 main] Starting sensor target read
+D/task_sensor [   1996687 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1996688 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1996689 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1996690 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1996691 sensor] sensor_control_start
+D/task_sensor [   1996696 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1996768 sensor] TSL2585[2]: MOD0=4864, Gain=[16x], Time=1.00ms
+D/task_sensor [   1996769 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1996770 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   1996822 sensor] TSL2585[5]: MOD0=48591, Gain=[16x], Time=10.00ms
+D/task_sensor [   1996824 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   1997238 sensor] TSL2585[7]: MOD0=970375, Gain=[16x], Time=200.00ms
+D/task_sensor [   1997445 sensor] TSL2585[8]: MOD0=969039, Gain=[16x], Time=200.00ms
+D/task_sensor [   1997447 sensor] sensor_control_stop
+I/sensor   [   1997448 main] Sensor read complete
+I/densitometer [   1997449 main] D=0.67, VALUE=19.448921,19.578218(29.2C)
+I/state_controller [   1997473 main] State transition: 4 -> 3
+I/state_controller [   1999852 main] State transition: 3 -> 4
+D/task_sensor [   1999876 sensor] sensor_control_read_temperature
+I/sensor   [   1999878 main] Starting sensor target read
+D/task_sensor [   1999888 sensor] sensor_control_set_mode: 1
+D/task_sensor [   1999889 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   1999890 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   1999891 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   1999892 sensor] sensor_control_start
+D/task_sensor [   1999897 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   1999969 sensor] TSL2585[2]: MOD0=4864, Gain=[16x], Time=1.00ms
+D/task_sensor [   1999971 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   1999972 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   2000023 sensor] TSL2585[5]: MOD0=48576, Gain=[16x], Time=10.00ms
+D/task_sensor [   2000025 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   2000439 sensor] TSL2585[7]: MOD0=970058, Gain=[16x], Time=200.00ms
+D/task_sensor [   2000647 sensor] TSL2585[8]: MOD0=968858, Gain=[16x], Time=200.00ms
+D/task_sensor [   2000648 sensor] sensor_control_stop
+I/sensor   [   2000649 main] Sensor read complete
+I/densitometer [   2000650 main] D=0.67, VALUE=19.443926,19.572021(29.2C)
+I/state_controller [   2000675 main] State transition: 4 -> 3
+I/state_controller [   2002939 main] State transition: 3 -> 4
+D/task_sensor [   2002963 sensor] sensor_control_read_temperature
+I/sensor   [   2002965 main] Starting sensor target read
+D/task_sensor [   2002976 sensor] sensor_control_set_mode: 1
+D/task_sensor [   2002977 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   2002978 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   2002979 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   2002980 sensor] sensor_control_start
+D/task_sensor [   2002985 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   2003057 sensor] TSL2585[2]: MOD0=4864, Gain=[16x], Time=1.00ms
+D/task_sensor [   2003058 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   2003060 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   2003112 sensor] TSL2585[5]: MOD0=48551, Gain=[16x], Time=10.00ms
+D/task_sensor [   2003113 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   2003527 sensor] TSL2585[7]: MOD0=969376, Gain=[16x], Time=200.00ms
+D/task_sensor [   2003735 sensor] TSL2585[8]: MOD0=968052, Gain=[16x], Time=200.00ms
+D/task_sensor [   2003737 sensor] sensor_control_stop
+I/sensor   [   2003738 main] Sensor read complete
+I/densitometer [   2003739 main] D=0.67, VALUE=19.429005,19.557003(29.2C)
+I/state_controller [   2003764 main] State transition: 4 -> 3
+I/state_controller [   2006215 main] State transition: 3 -> 4
+D/task_sensor [   2006240 sensor] sensor_control_read_temperature
+I/sensor   [   2006241 main] Starting sensor target read
+D/task_sensor [   2006252 sensor] sensor_control_set_mode: 1
+D/task_sensor [   2006253 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   2006254 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   2006255 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   2006256 sensor] sensor_control_start
+D/task_sensor [   2006261 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   2006333 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   2006334 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   2006336 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   2006387 sensor] TSL2585[5]: MOD0=48531, Gain=[16x], Time=10.00ms
+D/task_sensor [   2006389 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   2006803 sensor] TSL2585[7]: MOD0=968926, Gain=[16x], Time=200.00ms
+D/task_sensor [   2007011 sensor] TSL2585[8]: MOD0=967591, Gain=[16x], Time=200.00ms
+D/task_sensor [   2007012 sensor] sensor_control_stop
+I/sensor   [   2007013 main] Sensor read complete
+I/densitometer [   2007015 main] D=0.67, VALUE=19.419868,19.547806(29.2C)
+I/state_controller [   2007039 main] State transition: 4 -> 3
+I/state_controller [   2009325 main] State transition: 3 -> 4
+D/task_sensor [   2009349 sensor] sensor_control_read_temperature
+I/sensor   [   2009350 main] Starting sensor target read
+D/task_sensor [   2009361 sensor] sensor_control_set_mode: 1
+D/task_sensor [   2009362 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   2009363 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   2009364 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   2009365 sensor] sensor_control_start
+D/task_sensor [   2009370 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   2009442 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   2009443 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   2009445 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   2009497 sensor] TSL2585[5]: MOD0=48508, Gain=[16x], Time=10.00ms
+D/task_sensor [   2009498 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   2009912 sensor] TSL2585[7]: MOD0=968644, Gain=[16x], Time=200.00ms
+D/task_sensor [   2010120 sensor] TSL2585[8]: MOD0=967464, Gain=[16x], Time=200.00ms
+D/task_sensor [   2010122 sensor] sensor_control_stop
+I/sensor   [   2010123 main] Sensor read complete
+I/densitometer [   2010124 main] D=0.67, VALUE=19.415768,19.543678(29.2C)
+I/state_controller [   2010148 main] State transition: 4 -> 3
+I/state_controller [   2012292 main] State transition: 3 -> 4
+D/task_sensor [   2012317 sensor] sensor_control_read_temperature
+I/sensor   [   2012318 main] Starting sensor target read
+D/task_sensor [   2012329 sensor] sensor_control_set_mode: 1
+D/task_sensor [   2012330 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   2012331 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   2012332 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   2012333 sensor] sensor_control_start
+D/task_sensor [   2012338 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   2012410 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   2012411 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   2012413 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   2012464 sensor] TSL2585[5]: MOD0=48480, Gain=[16x], Time=10.00ms
+D/task_sensor [   2012466 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   2012880 sensor] TSL2585[7]: MOD0=968190, Gain=[16x], Time=200.00ms
+D/task_sensor [   2013088 sensor] TSL2585[8]: MOD0=966912, Gain=[16x], Time=200.00ms
+D/task_sensor [   2013089 sensor] sensor_control_stop
+I/sensor   [   2013090 main] Sensor read complete
+I/densitometer [   2013091 main] D=0.67, VALUE=19.405678,19.533522(29.2C)
+I/state_controller [   2013116 main] State transition: 4 -> 3
+I/state_controller [   2015482 main] State transition: 3 -> 4
+D/task_sensor [   2015506 sensor] sensor_control_read_temperature
+I/sensor   [   2015507 main] Starting sensor target read
+D/task_sensor [   2015518 sensor] sensor_control_set_mode: 1
+D/task_sensor [   2015519 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   2015520 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   2015521 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   2015522 sensor] sensor_control_start
+D/task_sensor [   2015527 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   2015599 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   2015600 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   2015602 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   2015653 sensor] TSL2585[5]: MOD0=48459, Gain=[16x], Time=10.00ms
+D/task_sensor [   2015655 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   2016069 sensor] TSL2585[7]: MOD0=967539, Gain=[16x], Time=200.00ms
+D/task_sensor [   2016277 sensor] TSL2585[8]: MOD0=966450, Gain=[16x], Time=200.00ms
+D/task_sensor [   2016279 sensor] sensor_control_stop
+I/sensor   [   2016280 main] Sensor read complete
+I/densitometer [   2016281 main] D=0.67, VALUE=19.394518,19.522289(29.2C)
+I/state_controller [   2016305 main] State transition: 4 -> 3
+I/state_controller [   2018414 main] State transition: 3 -> 4
+D/task_sensor [   2018438 sensor] sensor_control_read_temperature
+I/sensor   [   2018439 main] Starting sensor target read
+D/task_sensor [   2018450 sensor] sensor_control_set_mode: 1
+D/task_sensor [   2018451 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   2018452 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   2018453 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   2018454 sensor] sensor_control_start
+D/task_sensor [   2018459 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   2018531 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   2018533 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   2018534 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   2018585 sensor] TSL2585[5]: MOD0=48436, Gain=[16x], Time=10.00ms
+D/task_sensor [   2018587 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   2019001 sensor] TSL2585[7]: MOD0=967370, Gain=[16x], Time=200.00ms
+D/task_sensor [   2019209 sensor] TSL2585[8]: MOD0=966152, Gain=[16x], Time=200.00ms
+D/task_sensor [   2019211 sensor] sensor_control_stop
+I/sensor   [   2019211 main] Sensor read complete
+I/densitometer [   2019213 main] D=0.67, VALUE=19.389833,19.517572(29.2C)
+I/state_controller [   2019237 main] State transition: 4 -> 3
+I/state_controller [   2021186 main] State transition: 3 -> 4
+D/task_sensor [   2021210 sensor] sensor_control_read_temperature
+I/sensor   [   2021211 main] Starting sensor target read
+D/task_sensor [   2021222 sensor] sensor_control_set_mode: 1
+D/task_sensor [   2021223 sensor] sensor_control_set_gain: 9, 0x01
+D/task_sensor [   2021224 sensor] sensor_control_set_integration: 719, 0
+D/task_sensor [   2021225 sensor] sensor_control_set_agc_enabled: 9
+D/task_sensor [   2021226 sensor] sensor_control_start
+D/task_sensor [   2021231 sensor] TSL2585 Initial State: Mode=1, Gain=256x,0.5x, ALS_ATIME=1.00ms, AGC_ATIME=10.00ms
+D/task_sensor [   2021303 sensor] TSL2585[2]: MOD0=4848, Gain=[16x], Time=1.00ms
+D/task_sensor [   2021305 sensor] sensor_control_set_agc_disabled
+D/task_sensor [   2021306 sensor] sensor_control_set_integration: 719, 9
+D/task_sensor [   2021357 sensor] TSL2585[5]: MOD0=48404, Gain=[16x], Time=10.00ms
+D/task_sensor [   2021359 sensor] sensor_control_set_integration: 719, 199
+D/task_sensor [   2021773 sensor] TSL2585[7]: MOD0=966870, Gain=[16x], Time=200.00ms
+D/task_sensor [   2021981 sensor] TSL2585[8]: MOD0=965595, Gain=[16x], Time=200.00ms
+D/task_sensor [   2021983 sensor] sensor_control_stop
+I/sensor   [   2021984 main] Sensor read complete
+I/densitometer [   2021985 main] D=0.67, VALUE=19.379234,19.506905(29.2C)
+I/state_controller [   2022009 main] State transition: 4 -> 3
