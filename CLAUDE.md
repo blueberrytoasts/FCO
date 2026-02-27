@@ -10,12 +10,17 @@ Research project for film dosimetry analysis in radiation therapy. Goal: develop
 
 ## Scripts
 
+All scripts live in `scripts/`.
+
 | File | Purpose |
 |---|---|
 | `film_rgb_analysis.py` | Main analysis — loads TIFFs, detects film regions, extracts ROIs, computes OD per RGB channel |
 | `net_od_analysis.py` | Computes Net OD (Post − Pre) for matched scan pairs, plots Net OD vs. Dose |
 | `rgb_combination_analysis.py` | Fits `OD_dektronics = a·OD_R + b·OD_G + c·OD_B` via linear regression |
 | `regression_analysis.py` | 2nd-order polynomial regression: `Flatbed_OD = A·(Dek_OD)² + B·(Dek_OD) + C` |
+| `log_reader.py` | Parses temperature values from densitometer log files; copies tab-separated blocks to clipboard |
+| `plot_normalized_od.py` | Plots normalized OD vs. time from a normalized data CSV (e.g., `normalized_data_0cGy.csv`) |
+| `plot_sequential.py` | Plots CSV values sequentially by index (row-major order) for reproducibility/drift analysis |
 
 ## Core Architecture: FilmAnalyzer (`film_rgb_analysis.py`)
 
@@ -43,7 +48,9 @@ OD_dektronics = a·OD_R + b·OD_G + c·OD_B
 ```
 No intercept. Input CSV paths are module-level constants (`DEKTRONICS_CSV_PATH`, `RGB_CSV_PATH`) — update when switching scan sessions.
 
-**Latest results (02-03-26):** a=0.670, b=2.421, c=−2.295 | R²=1.000, RMS=0.0009
+**Latest results (02-26-26, post OD):** a=0.663, b=1.651, c=−1.379 | R²=1.000, RMS=0.0008
+
+Note: coefficients are fit against **post OD** (not net OD), per advisor feedback. Negative c is physically expected — see `notes/rgb_linear_combination_observations.md` for spectral physics rationale.
 
 Outputs: `outputs/rgb_combination_analysis.png`, `outputs/rgb_combination_results.csv`
 
@@ -51,18 +58,27 @@ Outputs: `outputs/rgb_combination_analysis.png`, `outputs/rgb_combination_result
 
 ```bash
 # Film analysis
-python film_rgb_analysis.py "path/to/scan.tif"
-python film_rgb_analysis.py "path/to/scan.tif" --roi-radius 50
-python film_rgb_analysis.py "path/to/scan.tif" --pv-unexposed 60000
+python scripts/film_rgb_analysis.py "path/to/scan.tif"
+python scripts/film_rgb_analysis.py "path/to/scan.tif" --roi-radius 50
+python scripts/film_rgb_analysis.py "path/to/scan.tif" --pv-unexposed 60000
 
 # Net OD (pre/post pairs, matched by position)
-python net_od_analysis.py --pre Pre-001 Pre-002 --post Post-003 Post-004 --doses 0 10 50 200 500
+python scripts/net_od_analysis.py --pre Pre-001 Pre-002 --post Post-003 Post-004 --doses 0 10 50 200 500
 
 # RGB combination regression
-python rgb_combination_analysis.py
+python scripts/rgb_combination_analysis.py
 
 # Polynomial regression
-python regression_analysis.py
+python scripts/regression_analysis.py
+
+# Plot normalized OD vs time
+python scripts/plot_normalized_od.py data/normalized_data_0cGy.csv
+
+# Plot sequential readings (reproducibility/drift)
+python scripts/plot_sequential.py data/raw_data_500cGy.csv
+
+# Parse temperatures from densitometer log
+python scripts/log_reader.py
 
 # Tests
 python -m pytest tests/  # 13/13 tests passing
@@ -74,11 +90,19 @@ python -m pytest tests/  # 13/13 tests passing
 - TIFFs in dated directories (e.g., `02.03.26 15 MeV Scans/`)
 - Naming: `Pre-###.tif`, `Post-###.tif`, `Test #.tif`
 - `data/regression data.csv`: columns `Dose (cGy)`, `Avg Net OD (Dektronics)`, `Avg Net OD (Flatbed)`
+- `data/normalized_data_0cGy.csv`, `data/normalized_data_500cGy.csv`: time-series normalized OD (trials as columns, time in minutes as rows; value at t=0 is 1.0)
+- `data/raw_data_500cGy.csv`, `data/2nd_raw_data_500cGy.csv`: raw sequential OD readings for reproducibility analysis
+- `data/log_text.txt`: raw densitometer log output for temperature extraction
 
 **Outputs** (gitignored, auto-created):
 - `outputs/<filename>/film_analysis_plot.png` + `film_analysis_results.csv`
 - `outputs/<pre>_<post>/net_od_plot.csv` + `net_od_plot.png`
 - `outputs/rgb_combination_analysis.png` + `rgb_combination_results.csv`
+
+## Notes
+
+`notes/` contains research observations and physics rationale:
+- `rgb_linear_combination_observations.md` — detailed explanation of why c (blue coefficient) is negative, spectral physics of the WW LED + TSL2585 photopic sensor, and fit methodology discussion.
 
 ## Tests
 
